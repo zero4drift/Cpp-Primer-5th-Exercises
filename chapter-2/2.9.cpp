@@ -7,9 +7,9 @@ int main()
   int input_value;
   std::cin >> input_value;
   // int i = { 3.14 } precision loss
-  int i = {3};
+  double i = {3.14};
   // double salary = wage = 9999.99
   double salary = 9999.99, wage = salary;
-  int i = 3.14;
+  int i = 3.14;			// truncated
   return 0;
 }
