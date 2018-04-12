@@ -22,7 +22,7 @@ int main()
   auto mid = v.begin() + v.size() / 2;
   for(auto it = v.begin(); it <= mid; ++it)
     {
-      if(it <= (v.end() - (it - v.begin()) - 1))
+      if(it <= (v.end() - (it - v.begin()) - 1)) // that is a little complicated, a better way is to define two iterator type variables in for loop, one the head, another the tail. 
 	cout << *it + *(v.end() - (it - v.begin()) - 1) << endl;
     }
 }

@@ -10,7 +10,7 @@ int main()
 {
   string s;
   getline(cin, s);
-  for(char &c : s)		// no difference from 3.6
+  for(char c : s)		// c is a copy of character in string s
     c = 'X';
-  cout << s << std::endl;
+  cout << s << std::endl;	// actually s is unchanged
 }
