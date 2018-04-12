@@ -1,0 +1,1 @@
+// generally pointer is a ram address, there is no point in adding a pointer with another pointer, even though that operation is legal, the result is a bigger address stores something does not belong to this programming context 
