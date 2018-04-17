@@ -1,0 +1,1 @@
+// if pre ++ operator applied, the program woould miss the first element in the vector, and in case that there is no negative value in the vector, it would run into the off-the-end element of this vector, which would cause an error. 
