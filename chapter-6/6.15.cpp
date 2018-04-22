@@ -1,0 +1,4 @@
+// string::size_type find_char(const string &s, char c, string::size_type &occurs);
+// there is no need to modify the original argument, and the original string object argument maybe too long that the expense of copy is too high, so the first parameter is a reference to a const string; if it is a reference to a string, actions inside function body may modify the original string object and the compiler would allow it.
+// copy of char type object costs a little, it could be a reference, but that would be unnecessary.
+// in the contrast to the first parameter, there is a need to modify the third passed argument which is a string::size_type object, the third parameter should be a reference or a pointer; if it is a reference to a constant, the modifiment is impossibile and the compiler would raise an error.
