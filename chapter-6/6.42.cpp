@@ -16,6 +16,6 @@ int main()
   string s2 = "failure";
   cout << make_plural(1, s1) << endl;
   cout << make_plural(1, s2) << endl;
-  cout << make_plural(2, s1) << endl;
+  cout << make_plural(2, s1, "es") << endl;
   cout << make_plural(2, s2) << endl;
 }

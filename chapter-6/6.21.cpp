@@ -4,7 +4,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-int compare(int i, int *p)
+int compare(const int i, const int *p)
 {
   return i >= *p ? i : *p;
 }

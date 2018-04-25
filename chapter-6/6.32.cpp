@@ -3,10 +3,10 @@
 using std::cout;
 using std::endl;
 
-int *get(int *arry, int index)
+int &get(int *arry, int index)
 {
-  // return arry[index]; arry[index] evaluated and then its value stored in a local temp object, return value as a reference would be binded to this local temp object, which would be invalid in memory when this function terminates.
-  return arry + index;
+  // legal, for that this function's return type is int&, which is reference to element in arry
+  return arry[index];		// [] operator's evaluated result is a left value
 }
 
 int main()
@@ -14,7 +14,7 @@ int main()
   int ia[10];
   for(int i = 0; i != 10; ++i)
     {
-      *get(ia, i) = i;
+      get(ia, i) = i;
       cout << ia[i] << endl;
     }
 }
