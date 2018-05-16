@@ -20,7 +20,7 @@ public:				/* These member functions and constructors are nececssary to be acces
    * and const object of Person type could also be able to call this kind of functions
    */
   Person() = default;
-Person(const string &s1, const string &s2): name(s1), address(s2) {};
+Person(const string &s1, const string &s2): name(s1), address(s2) {}
   Person(istream &);
 private:			/* data members of class shoud not be accessed directly */
   string name;

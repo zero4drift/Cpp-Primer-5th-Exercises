@@ -18,7 +18,7 @@ struct Sales_data {
   friend ostream &print(ostream &, const Sales_data &);
   friend Sales_data add(const Sales_data &item1, const Sales_data &item2);
 public:
-  // Sales_data(): bookNo(""), units_sold(0), revenue(0) {};
+  // Sales_data(): bookNo(""), units_sold(0), revenue(0) {}
   // Exercise 7.14 above has misleading due to the CN version.
   // It's ok to use the in-class initializer values.
   Sales_data() = default;
