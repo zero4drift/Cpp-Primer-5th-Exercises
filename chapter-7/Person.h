@@ -9,6 +9,8 @@ using std::ostream;
 using std::string;
 
 struct Person {
+  friend istream &read(istream &, Person &);
+public:				/* These member functions and constructors are nececssary to be accessibile to users, they're interfaces of this class */
   string get_name() const {return name;}
   string get_address() const {return address;}
   /*
@@ -19,20 +21,13 @@ struct Person {
    */
   Person() = default;
 Person(const string &s1, const string &s2): name(s1), address(s2) {};
+  Person(istream &);
+private:			/* data members of class shoud not be accessed directly */
   string name;
   string address;
 };
 
-istream &read(istream &is, Person p)
-{
-  is >> p.name >> p.address;
-  return is;
-}
-
-ostream &print(ostream &os, Person p)
-{
-  os << p.get_name() << " " << p.get_address();
-  return os;
-}
+istream &read(istream &is, Person &p);
+ostream &print(ostream &os, Person &p);
 
 #endif
