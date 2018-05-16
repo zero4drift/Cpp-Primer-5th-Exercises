@@ -17,6 +17,8 @@ struct Person {
    * for both functions just return but not modify the member of a object
    * and const object of Person type could also be able to call this kind of functions
    */
+  Person() = default;
+Person(const string &s1, const string &s2): name(s1), address(s2) {};
   string name;
   string address;
 };
