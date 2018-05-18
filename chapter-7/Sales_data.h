@@ -7,6 +7,8 @@
 using std::string;
 using std::istream;
 using std::ostream;
+using std::cout;
+using std::endl;
 
 struct Sales_data;
 istream &read(istream &is, Sales_data &item);
@@ -21,11 +23,15 @@ public:
   // Sales_data(): bookNo(""), units_sold(0), revenue(0) {}
   // Exercise 7.14 above has misleading due to the CN version.
   // It's ok to use the in-class initializer values.
-  Sales_data() = default;
-Sales_data(const string &s): bookNo(s) {}
+Sales_data(): Sales_data("", 0, 0)
+  {cout << " Default";};
+Sales_data(const string &s): Sales_data(s, 0, 0)
+  {cout << " With string argument";}
 Sales_data(const string &s, unsigned n, double p):
-  bookNo(s), units_sold(n), revenue(p*n) {}
-  Sales_data(istream &is) {read(is, *this);}
+  bookNo(s), units_sold(n), revenue(p*n)
+  {cout << " With three arguments";}
+Sales_data(istream &is): Sales_data()
+  {cout << " With istream argument"; read(is, *this);}
   string isbn() const {return bookNo;}
   Sales_data& combine(const Sales_data&);
 private:
