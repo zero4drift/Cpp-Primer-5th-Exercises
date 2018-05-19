@@ -2,7 +2,7 @@
 
 using std::string;
 
-struct Sales_data
+struct Sales_data		// using aggregate class 
 {
   string bookNo;
   unsigned units_sold;

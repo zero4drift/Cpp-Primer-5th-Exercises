@@ -3,7 +3,7 @@ class Y;
 
 class X
 {
-  Y *py;
+  Y *py = nullptr;		// p47
 };
 
 class Y

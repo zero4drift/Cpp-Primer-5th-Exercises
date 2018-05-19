@@ -20,3 +20,5 @@ Exercise::Type Exercise::setVal(Type parm) // type member Type of class Exercise
   val = parm + initVal();
   return val;
 }
+
+// and Exercise::initVal() should be defined

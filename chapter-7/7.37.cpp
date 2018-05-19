@@ -1,3 +1,8 @@
+#include <iostream>
+#include "Sales_data.h"
+
+using std::cin;
+
 Sales_data first_item(cin);	// Sales_data(istream &is) {read(is, *this);} data members depend on cin
 
 int main()

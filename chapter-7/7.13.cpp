@@ -12,7 +12,7 @@ int main()
   if(cin)
     {
       Sales_data trans;
-      while(read(cin, trans))
+      while(read(cin, trans))	// statement like this is more suitable 
 	{
 	  if(total.isbn() == trans.isbn())
 	    total.combine(trans);

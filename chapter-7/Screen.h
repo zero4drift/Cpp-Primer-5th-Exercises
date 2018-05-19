@@ -32,7 +32,7 @@ public:
 				  contents(ht * wd, c) {}
   char get() const {return contents[cursor];}
   char get(pos, pos) const;
-  pos size() const;
+  pos size() const;		/* Exercise 7.33 */
   Screen &move(pos, pos);
   Screen &set(char);
   Screen &set(pos, pos, char);
@@ -77,7 +77,7 @@ inline Screen &Screen::set(pos r, pos col, char ch)
   return *this;
 }
 
-void Window_mgr::clear(ScreenIndex i)
+inline void Window_mgr::clear(ScreenIndex i)
 {
   Screen &s = screens[i];
   s.contents = string(s.height * s.width, ' ');
