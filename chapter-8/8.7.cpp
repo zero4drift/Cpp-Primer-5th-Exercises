@@ -9,8 +9,12 @@ using std::cerr;
 
 int main(int argc, char *argv[])
 {
-  if(argc != 3) cout << "Incorrect command-line args"
-		     << " Need 3 now " << argc << endl;  
+  if(argc != 3)
+    {
+      cerr << "Incorrect command-line args"
+	   << " Need 3 now " << argc << endl;  
+      return -1;
+    }
   ifstream input(argv[argc - 2]);
   ofstream output(argv[argc - 1]);
   Sales_data total;

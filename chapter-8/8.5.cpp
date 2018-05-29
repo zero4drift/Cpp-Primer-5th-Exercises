@@ -11,7 +11,11 @@ using std::endl;
 
 int main(int argc, char *argv[])
 {
-  if(argc != 2) cout << "Incorrect command-line args" << endl; 
+  if(argc != 2)
+    {
+      cout << "Incorrect command-line args, needs 2 now " << argc << endl; 
+      return -1;
+    }
   string word;
   vector<string> vs;
   ifstream input;
