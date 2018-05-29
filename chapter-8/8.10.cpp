@@ -26,10 +26,12 @@ int main(int argc, char *argv[])
   vector<string> vs;
   while(getline(ifs, s))
     vs.push_back(s);
-  for(const auto &s : vs)
+  istringstream ist;
+  for(const auto &sl : vs)
     {
-      istringstream ist(s);
+      ist.str(sl);
       while(ist >> w) 
 	cout << w << endl;
+      ist.clear();
     }
 }

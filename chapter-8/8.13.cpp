@@ -30,6 +30,11 @@ int main(int argc, char *argv[])
       return -1;
     }
   ifstream ifs(argv[argc - 1]);
+  if(!ifs)
+    {
+      cerr << "Invalid arg " << argv[argc - 1] << endl;
+      return -1;
+    }
   string line, word;
   vector<PersonInfo> people;
   istringstream record;
@@ -41,7 +46,7 @@ int main(int argc, char *argv[])
       while(record >> word)
 	info.phones.push_back(word);
       people.push_back(info);
-      record.str("");
+      record.clear();
     }
 
   for(const auto &entry : people)

@@ -28,6 +28,6 @@ int main()
       while(record >> word)
 	info.phones.push_back(word);
       people.push_back(info);
-      record.str("");
+      record.clear();
     }
 }
