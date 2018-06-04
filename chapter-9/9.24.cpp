@@ -9,7 +9,7 @@ int main()
 {
   vector<int> iv;
   cout << iv.front() << endl;	// segment fault
-  cout << iv.back() << endl;	// same
+  cout << *iv.begin() << endl;	// same
   cout << iv[0] << endl;	// same
   cout << iv.at(0) << endl;	// std::out_of_range
 }

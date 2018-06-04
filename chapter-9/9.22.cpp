@@ -1,5 +1,5 @@
 // Changing the size of vector type object may cause re-allocation of its memory space.
-// the iterator iter and mid in original program may be invalid when program processing
+// the iterator iter and mid in original program would be invalid when program processing
 
 #include <iostream>
 #include <vector>

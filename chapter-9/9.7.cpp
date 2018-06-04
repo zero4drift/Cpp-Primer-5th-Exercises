@@ -1,1 +1,2 @@
-// vector<int>::value_type
+// That exercise is confusing, define 'index'
+// vector<int>::size_type

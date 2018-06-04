@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
       cerr << "Invalid file name " << argv[argc - 1] << endl;
       return -1;
     }
-  string ascender("bdfhtBDFHT");
-  string descender("gpyGPY");
+  string ascender("bdfhkltBDFHT");
+  string descender("gjpqyGPY");
   string word, result;
   while(ifs >> word)
     {
