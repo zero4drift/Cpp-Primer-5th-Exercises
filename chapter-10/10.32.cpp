@@ -1,3 +1,5 @@
+// using find, program is really complex
+// easier and simpler if using find_if
 #include <vector>
 #include <algorithm>
 #include <iterator>

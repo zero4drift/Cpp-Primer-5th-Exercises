@@ -1,24 +1,24 @@
 #include <iostream>
-#include <vector>
+#include <list>
 #include <string>
 #include <algorithm>
 
 using std::cout;
 using std::endl;
 using std::cin;
-using std::vector;
+using std::list;
 using std::string;
 using std::count;
 
 int main()
 {
   string i;
-  vector<string> vs;
+  list<string> ls;
   while(cin >> i)
-    vs.push_back(i);
+    ls.push_back(i);
   cout << "Specify a string: " << endl;
   cin.clear();
   cin >> i;
-  cout << "There are " << count(vs.begin(), vs.end(), i)
+  cout << "There are " << count(ls.begin(), ls.end(), i)
        << " count of " << i << " in input strings" << endl;
 }

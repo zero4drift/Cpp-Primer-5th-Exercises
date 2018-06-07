@@ -1,10 +1,12 @@
 #include <algorithm>
 #include <vector>
+#include <list>
 #include <iterator>
 #include <iostream>
 
 using std::unique_copy;
 using std::vector;
+using std::list;
 using std::inserter;
 using std::cout;
 using std::cin;
@@ -13,14 +15,14 @@ using std::endl;
 int main()
 {
   cout << "Please enter integers: " << endl;
-  vector<int> vi1;
+  vector<int> vi;
   int i;
   while(cin >> i)
-    vi1.push_back(i);
-  if(!vi1.size()) return -1;
-  vector<int> vi2;
-  unique_copy(vi1.cbegin(), vi1.cend(), inserter(vi2, vi2.begin()));
+    vi.push_back(i);
+  if(!vi.size()) return -1;
+  list<int> li;
+  unique_copy(vi.cbegin(), vi.cend(), inserter(li, li.begin()));
   cout << "Unique integers among your inputs: " << endl;
-  for(const auto &i : vi2)
+  for(const auto &i : li)
     cout << i << endl;
 }

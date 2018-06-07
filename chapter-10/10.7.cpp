@@ -28,7 +28,7 @@ int main()
   // b
   vector<int> vec2;
   vec2.reserve(10);	     // vec2 still has no elements, it is empty 
-  vec2.assign(10, 1);		// without it, fill_n would output undefined result
+  vec2.assign(10, 1);		// without it, fill_n would output undefined result, see the example illustrated in P341
   fill_n(vec2.begin(), 10, 0);
   for(const auto &i : vec2) cout << i << endl;
 }
