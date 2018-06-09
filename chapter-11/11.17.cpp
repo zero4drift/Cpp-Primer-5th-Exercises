@@ -5,7 +5,7 @@
 // copy elements of v to c, with same order
 
 // copy(v.begin(), v.end(), back_inserter(c))
-// copy elements of v to c, with same order
+// illegal, multiset does not support push_back
 
 // copy(c.begin(), c.end(), inserter(v. v.end()))
 // copy elements of c to v, with same order

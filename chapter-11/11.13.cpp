@@ -24,9 +24,11 @@ int main()
       // second way
       // p = make_pair(*vs_begin, *vi_begin); 
       // third way
-      p = {*vs_begin, *vi_begin}; // best
-      // assignment style easier to write and understand
-      vp.push_back(p);
+      // p = {*vs_begin, *vi_begin};
+      // fourth way: best
+      // easier to write and understand
+      vp.emplace_back(*vs_begin, *vi_begin);
+      // vp.push_back(p);
       ++vs_begin;
       ++vi_begin;
     }

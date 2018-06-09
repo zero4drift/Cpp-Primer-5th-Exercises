@@ -1,21 +1,14 @@
 #include <map>
+#include <set>
 #include <string>
 #include <iostream>
 
+using std::map;
 using std::multimap;
+using std::multiset;
 using std::string;
 using std::cout;
 using std::endl;
-
-void print_author(multimap<string, string> &authors, string author)
-{
-  cout << author << ": ";
-  auto range = authors.equal_range(author);
-  for(auto beg = range.first;
-      beg != range.second; ++beg)
-    cout << beg->second << ", ";
-  cout << endl;
-}
 
 int main()
 {
@@ -25,5 +18,14 @@ int main()
      {"jack", "cde"},
      {"levis", "ddd"},
      {"jane", "eee"}};
-  print_author(authors, "tom");
+  map<string, multiset<string>> order_authors;
+  for(const auto &author : authors)
+    order_authors[author.first].insert(author.second);
+  for(const auto &author : order_authors)
+    {
+      cout << author.first << ": ";
+      for(const auto &work : author.second)
+	cout << work << " ";
+      cout << endl;
+    }
 }
