@@ -83,17 +83,17 @@ sp1(t.sp1), sp2(t.sp2), search_word(s)
     }
 }
 
-void print(ostream &o, QueryResult &q)
+ostream &print(ostream &o, QueryResult q)
 {
   o << "elements occurs " << q.get_times() << " times" << endl;
   if(q.get_times())
     {
       auto result = q.get_result();
       for(const auto &p : result)
-	cout << "(line " << p.first << ") "
+	cout << "(line " << p.first + 1 << ") "
 	     << p.second << endl;
     }
-  
+  return o;
 }
 
 QueryResult TextQuery::query(const string &s)
