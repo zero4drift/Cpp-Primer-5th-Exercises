@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "TextQuery.h"
+#include "TextQuery-1230.h"
 
 using std::ifstream;
 using std::cin;
