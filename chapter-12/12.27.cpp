@@ -1,4 +1,4 @@
-// See TextQuery.h and QueryResult.h
+// See TextQuery.h
 
 #include <fstream>
 #include <iostream>

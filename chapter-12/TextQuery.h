@@ -62,8 +62,8 @@ class QueryResult
   shared_ptr<map<string, set<size_t>>> sp2;
  public:
   QueryResult(const string &s, TextQuery &t);
-  size_t get_times() {return times;}
-  map<size_t, string> &get_result() {return result;}
+  size_t get_times() const {return times;}
+  const map<size_t, string> &get_result() const {return result;}
 };
 
 QueryResult::QueryResult(const string &s, TextQuery &t):
@@ -83,14 +83,14 @@ sp1(t.sp1), sp2(t.sp2), search_word(s)
     }
 }
 
-ostream &print(ostream &o, QueryResult q)
+ostream &print(ostream &o, const QueryResult &q)
 {
-  o << "elements occurs " << q.get_times() << " times" << endl;
+  o << "element occurs " << q.get_times() << " times" << endl;
   if(q.get_times())
     {
       auto result = q.get_result();
       for(const auto &p : result)
-	cout << "(line " << p.first + 1 << ") "
+	cout << "        (line " << p.first + 1 << ") "
 	     << p.second << endl;
     }
   return o;
