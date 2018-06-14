@@ -21,10 +21,7 @@ int main()
   strcat(p, d);
   delete [] p;
   // string
-  string *s = new string[2]();
   string s1("hello");
   string s2("world");
-  *s = s1;
-  *(s + 1) = s2;
-  delete [] s;
+  string s = s1 + s2;
 }

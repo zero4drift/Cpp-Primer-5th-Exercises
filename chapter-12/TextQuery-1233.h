@@ -62,8 +62,8 @@ class QueryResult
   shared_ptr<vector<string>> sp1;
   shared_ptr<map<string, set<TextQuery::line_no>>> sp2;
  public:
-  set<TextQuery::line_no>::iterator begin() {return (*this).begin();}
-  set<TextQuery::line_no>::iterator end() {return (*this).end();} 
+  set<TextQuery::line_no>::iterator begin() {return result->begin();}
+  set<TextQuery::line_no>::iterator end() {return result->end();} 
   shared_ptr<vector<string>> get_file() {return sp1;}
   QueryResult(const string &s, TextQuery &t);
 };

@@ -115,7 +115,7 @@ class ConstStrBlobPtr
  ConstStrBlobPtr(): curr(0) {}
  ConstStrBlobPtr(const StrBlob &a, size_t sz = 0):
   wptr(a.data), curr(sz) {}
-  string &deref() const;
+  const string &deref() const;
   ConstStrBlobPtr &incr();
  private:
   shared_ptr<vector<string>> check(size_t,const string&) const;
