@@ -1,0 +1,2 @@
+// When a StrBlob object is destructed, every non-static member of it would be destructed, and descrease the reference count of the object which is pointed by object's share_ptr, if count comes to zero, that object be pointed is destructed, too.
+// When StrBlobPtr object is destructed, every non-static member of it would be destructed, since it has a weak_ptr member, this ptr's destruction has no influence on the reference count of the object which is pointed by weak_ptr.
