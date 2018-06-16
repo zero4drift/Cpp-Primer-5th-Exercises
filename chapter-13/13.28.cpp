@@ -7,7 +7,6 @@ class BinStrTree;
 
 class TreeNode
 {
-  friend BinStrTree;
 private:
   string value;
   int count;
