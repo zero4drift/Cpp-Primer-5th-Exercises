@@ -1,0 +1,2 @@
+// if not define a destructor in HasPtr class type, the dynamic memory space pointed by member ps would not be released after destruction of HasPtr object, then causes memory leak.
+// if not define a copy constructor illustrated in section 12.2.1, copy initialization of HasPtr object would directly copy the value of member ps, thus at last two objects' ps member both point to the same dynamic memory space.
