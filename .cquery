@@ -1,0 +1,6 @@
+%clang
+%cpp -std=gnu++11
+-pthread
+
+# Includes
+-I/usr/include

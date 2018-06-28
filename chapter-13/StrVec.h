@@ -20,8 +20,10 @@ class StrVec
  public:
  StrVec(): elements(nullptr), first_free(nullptr), cap(nullptr) {}
   StrVec(const StrVec &);
+  StrVec(StrVec &&) noexcept;
   StrVec(const initializer_list<string> &is);
   StrVec &operator=(const StrVec &);
+  StrVec &operator=(StrVec &&) noexcept;
   string &operator[](size_t n);
   ~StrVec();
   void push_back(const string &);
@@ -76,6 +78,13 @@ StrVec::StrVec(const StrVec &s)
   first_free = cap = newdata.second;
 }
 
+StrVec::StrVec(StrVec &&s) noexcept: first_free(s.first_free), elements(s.elements), cap(s.cap)
+{
+  s.first_free = nullptr;
+  s.elements = nullptr;
+  s.cap = nullptr;
+}
+
 StrVec::StrVec(const initializer_list<string> &is)
 {
   auto newdata = alloc_n_copy(is.begin(), is.end());
@@ -99,22 +108,35 @@ StrVec &StrVec::operator=(const StrVec &rhs)
     if(n >= size())
       throw runtime_error("Out of range");
     else
-	return *(elements + n);
+      return *(elements + n);
   }
-  
-void StrVec::reallocate(size_t n)
+
+StrVec &StrVec::operator=(StrVec &&s) noexcept
 {
-  auto newcapacity = n ? n : (size() ? 2 * size() : 1);
-  auto newdata = alloc.allocate(newcapacity);
-  auto dest = newdata;
-  auto elem = elements;
-  for(size_t i = 0; i != size(); ++i)
-    alloc.construct(dest++, std::move(*elem++));
-  free();
-  elements = newdata;
-  first_free = dest;
-  cap = elements + newcapacity;
+  if(&s != this)
+    {
+      free();
+      first_free = s.first_free;
+      elements = s.elements;
+      cap = s.cap;
+      s.first_free = s.elements = s.cap = nullptr;
+    }
+  return *this;
 }
+  
+  void StrVec::reallocate(size_t n)
+  {
+    auto newcapacity = n ? n : (size() ? 2 * size() : 1);
+    auto newdata = alloc.allocate(newcapacity);
+    auto dest = newdata;
+    auto elem = elements;
+    for(size_t i = 0; i != size(); ++i)
+      alloc.construct(dest++, std::move(*elem++));
+    free();
+    elements = newdata;
+    first_free = dest;
+    cap = elements + newcapacity;
+  }
 
 void StrVec::reserve(size_t n)
 {

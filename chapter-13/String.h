@@ -19,7 +19,9 @@ class String
  String(): elements(nullptr), first_free(nullptr), cap(nullptr) {}
   String(const char *);
   String(const String &);
+  String(String &&) noexcept;
   String &operator=(const String &);
+  String &operator=(String &&) noexcept;
   char &operator[](size_t n);
   ~String();
   void push_back(const char &);
@@ -74,9 +76,18 @@ String::String(const char *c)
 
 String::String(const String &s)
 {
+  cout << "String::String(const String &s)" << endl;
   auto newdata = alloc_n_copy(s.begin(), s.end());
   elements = newdata.first;
   first_free = cap = newdata.second;
+}
+
+String::String(String &&s) noexcept: first_free(s.first_free), elements(s.elements), cap(s.cap)
+{
+  cout << "String::String(String &&s)" << endl;
+  s.first_free = nullptr;
+  s.elements = nullptr;
+  s.cap = nullptr;
 }
 
 String::~String()
@@ -86,26 +97,40 @@ String::~String()
 
 String &String::operator=(const String &rhs)
 {
+  cout << "String &String::operator=(const String &rhs)" << endl;
   auto data = alloc_n_copy(rhs.begin(), rhs.end());
   free();
   elements = data.first;
   first_free = cap = data.second;
   return *this;
 }
+
+  String &String::operator=(String &&s) noexcept
+  {
+    cout << "String &String::operator=(String &&s)" << endl;
+    if(&s != this)
+      {
+	free();
+	first_free = s.first_free;
+	elements = s.elements;
+	cap = s.cap;
+      }
+    return *this;
+  }
   
-void String::reallocate(size_t n)
-{
-  auto newcapacity = n ? n : (size() ? 2 * size() : 1);
-  auto newdata = alloc.allocate(newcapacity);
-  auto dest = newdata;
-  auto elem = elements;
-  for(size_t i = 0; i != size(); ++i)
-    alloc.construct(dest++, std::move(*elem++));
-  free();
-  elements = newdata;
-  first_free = dest;
-  cap = elements + newcapacity;
-}
+    void String::reallocate(size_t n)
+    {
+      auto newcapacity = n ? n : (size() ? 2 * size() : 1);
+      auto newdata = alloc.allocate(newcapacity);
+      auto dest = newdata;
+      auto elem = elements;
+      for(size_t i = 0; i != size(); ++i)
+	alloc.construct(dest++, std::move(*elem++));
+      free();
+      elements = newdata;
+      first_free = dest;
+      cap = elements + newcapacity;
+    }
 
 void String::print()
 {

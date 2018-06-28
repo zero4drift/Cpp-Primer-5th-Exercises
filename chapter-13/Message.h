@@ -24,7 +24,9 @@ class Message
  public:
   explicit Message(const string &str = ""): contents(str) {}
   Message(const Message &);
+  Message(Message &&) noexcept;
   Message& operator=(const Message &);
+  Message& operator=(Message &&) noexcept;
   ~Message();
   void save(Folder &);
   void remove(Folder &);
@@ -35,6 +37,7 @@ class Message
   set<Folder*> folders;
   void add_to_Folders(const Message &);
   void remove_from_Folders();
+  void move_Folders(Message *);
 };
 
 void Message::save(Folder &f)
@@ -61,6 +64,11 @@ contents(m.contents), folders(m.folders)
   add_to_Folders(m);
 }
 
+Message::Message(Message &&m) noexcept: contents(std::move(m.contents))
+{
+  move_Folders(&m);
+}
+
 void Message::remove_from_Folders()
 {
   for(auto f : folders)
@@ -81,20 +89,31 @@ Message& Message::operator=(const Message &rhs)
   return *this;
 }
 
-  void swap(Message &lhs, Message &rhs)
+  Message& Message::operator=(Message &&m) noexcept
   {
-    using std::swap;
-    for(auto f : lhs.folders)
-      f->remMsg(&lhs);
-    for(auto f : rhs.folders)
-      f->remMsg(&rhs);
-    swap(lhs.folders, rhs.folders);
-    swap(lhs.contents, rhs.contents);
-    for(auto f : lhs.folders)
-      f->addMsg(&lhs);
-    for(auto f : rhs.folders)
-      f->addMsg(&rhs);
+    if(this != &m)
+      {
+	remove_from_Folders();
+	contents = std::move(m.contents);
+	move_Folders(&m);
+      }
+    return *this;
   }
+
+    void swap(Message &lhs, Message &rhs)
+    {
+      using std::swap;
+      for(auto f : lhs.folders)
+	f->remMsg(&lhs);
+      for(auto f : rhs.folders)
+	f->remMsg(&rhs);
+      swap(lhs.folders, rhs.folders);
+      swap(lhs.contents, rhs.contents);
+      for(auto f : lhs.folders)
+	f->addMsg(&lhs);
+      for(auto f : rhs.folders)
+	f->addMsg(&rhs);
+    }
 
 Folder::~Folder()
 {
@@ -109,4 +128,15 @@ Folder::Folder(const Folder &f)
     m->remove(*this);
   for(auto &m : f.messages)
     m->save(*this);
+}
+
+void Message::move_Folders(Message *m)
+{
+  folders = std::move(m->folders);
+  for(auto f : folders)
+    {
+      f->remMsg(m);
+      f->addMsg(this);
+    }
+  m->folders.clear();
 }

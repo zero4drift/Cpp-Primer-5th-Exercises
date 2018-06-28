@@ -1,0 +1,1 @@
+// When the vector<String> object does not have enough space and then processes memory reallocation, it would use move constructor instead of copy constructor of String type during the reallocation of original elements.
