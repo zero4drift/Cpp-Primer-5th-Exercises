@@ -16,7 +16,9 @@ private:
 
 HasPtr& HasPtr::operator=(const HasPtr &h)
 {
-  ps = new string(*h.ps);
+  auto newptr = new string(*h.ps);
+  delete ps;
+  ps = newptr;
   i = h.i;
   return *this;
 }

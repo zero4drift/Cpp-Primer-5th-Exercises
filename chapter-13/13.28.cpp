@@ -13,7 +13,7 @@ private:
   TreeNode *left;
   TreeNode *right;
 public:
-  TreeNode(): count(0) {}
+  TreeNode(): count(0), left(nullptr), right(nullptr) {}
   TreeNode(const TreeNode &t);
   TreeNode &operator=(const TreeNode &t);
   ~TreeNode();

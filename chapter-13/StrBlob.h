@@ -143,7 +143,7 @@ shared_ptr<vector<string>> ConstStrBlobPtr::check(size_t i, const string &msg) c
   return ret;
 }
 
-string &ConstStrBlobPtr::deref() const
+const string &ConstStrBlobPtr::deref() const
 {
   auto p = check(curr, "dereference pass end");
   return (*p)[curr];

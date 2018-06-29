@@ -5,9 +5,9 @@ using std::string;
 class HasPtr
 {
 public:
-  HasPtr(const string &s = std::string()):
+  HasPtr(const string &s = string()):
     ps(new string(s)), i(0) {}
-  HasPtr(const HasPtr &h): ps(new string), i(h.i) {*ps = *h.ps;}
+  HasPtr(const HasPtr &h): ps(new string(*h.ps)), i(h.i) {}
 private:
   string *ps;
   int i;
