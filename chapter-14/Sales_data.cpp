@@ -23,11 +23,11 @@ istream &read(istream &is, Sales_data &item)
   return is;
 }
 
-istream &Sales_data::operator>>(istream &i)
+istream &operator>>(istream &i, Sales_data &data)
 {
   double price;
-  i >> bookNo >> units_sold >> price;
-  revenue = price * units_sold;
+  i >> data.bookNo >> data.units_sold >> price;
+  data.revenue = price * data.units_sold;
   return i;
 }
 
@@ -37,9 +37,9 @@ ostream &print(ostream &os, const Sales_data &item)
   return os;
 }
 
-ostream &Sales_data::operator<<(ostream &o)
+ostream &operator<<(ostream &o, const Sales_data &data)
 {
-  o << isbn() << " " << units_sold << " " << revenue << " " << avg_price();
+  o << data.isbn() << " " << data.units_sold << " " << data.revenue << " " << data.avg_price();
   return o;
 }
 

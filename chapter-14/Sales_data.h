@@ -20,6 +20,8 @@ struct Sales_data {
   friend ostream &print(ostream &, const Sales_data &);
   friend Sales_data add(const Sales_data &item1, const Sales_data &item2);
   friend Sales_data operator+(const Sales_data &, const Sales_data &);
+  friend istream &operator>>(istream &, Sales_data &);
+  friend ostream &operator<<(ostream &, const Sales_data &);
 public:
   // Sales_data(): bookNo(""), units_sold(0), revenue(0) {}
   // Exercise 7.14 above has misleading due to the CN version.
@@ -35,8 +37,6 @@ Sales_data(istream &is): Sales_data()
   {cout << " With istream argument"; read(is, *this);}
   string isbn() const {return bookNo;}
   Sales_data& combine(const Sales_data&);
-  istream &operator>>(istream &);
-  ostream &operator<<(ostream &);
   Sales_data &operator+=(const Sales_data &);
 private:
   double avg_price() const;
