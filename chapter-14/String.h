@@ -16,6 +16,7 @@ using std::endl;
 
 class String
 {
+  friend ostream &operator<<(ostream &, const String &);
  public:
  String(): elements(nullptr), first_free(nullptr), cap(nullptr) {}
   String(const char *);
@@ -138,4 +139,12 @@ ostream &String::print()
   for(auto p = elements; p != first_free; ++p)
     cout << *p;
   return cout;
+}
+
+
+ostream &operator<<(ostream &os, const String &s)
+{
+  for(auto p = s.elements; p != s.first_free; ++p)
+    cout << *p;
+  return os;
 }
