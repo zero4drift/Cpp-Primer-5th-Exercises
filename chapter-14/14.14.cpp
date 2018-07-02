@@ -1,0 +1,2 @@
+// refraction friendly;
+// simplified code;

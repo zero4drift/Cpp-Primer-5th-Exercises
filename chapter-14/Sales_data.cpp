@@ -55,14 +55,34 @@ Sales_data add(const Sales_data &item1, const Sales_data &item2)
   return result.combine(item2);
 }
 
-Sales_data operator+(const Sales_data &data1, const Sales_data &data2)
-{
-  return Sales_data(data1.bookNo,
-		    data1.units_sold + data2.units_sold,
-		    data1.revenue + data2.revenue);
-}
-
 Sales_data &Sales_data::operator+=(const Sales_data &data)
 {
   return combine(data);
+}
+
+Sales_data &Sales_data::operator=(const string &s)
+{
+  bookNo = s;
+  units_sold = 0;
+  revenue = 0.0;
+  return *this;
+}
+
+Sales_data operator+(const Sales_data &data1, const Sales_data &data2)
+{
+  Sales_data temp = data1;
+  temp += data2;
+  return temp;
+}
+
+bool operator==(const Sales_data &data1, const Sales_data &data2)
+{
+  return data1.bookNo == data2.bookNo &&
+    data1.units_sold == data2.units_sold &&
+    data1.revenue == data2.revenue;
+}
+
+bool operator!=(const Sales_data &data1, const Sales_data &data2)
+{
+  return !(data1 == data2);
 }
