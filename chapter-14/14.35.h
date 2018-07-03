@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+
+using std::cin;
+using std::istream;
+using std::string;
+
+class ReadString
+{
+  istream &is;
+public:
+  ReadString(istream &i = cin): is(i) {};
+  string operator()() const;
+};
+
+string ReadString::operator()() const
+{
+  string result;
+  is >> result;
+  if(is)
+    return result;
+  else
+    return "";
+}

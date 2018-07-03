@@ -105,6 +105,45 @@ const string &StrBlobPtr::operator[](size_t n) const
   return (*p)[n];
 }
 
+StrBlobPtr &StrBlobPtr::operator++()
+{
+  check(curr, "increment past end of StrBlobPtr");
+  ++curr;
+  return *this;
+}
+
+StrBlobPtr &StrBlobPtr::operator--()
+{
+  --curr;
+  check(curr, "increment past end of StrBlobPtr");
+  return *this;
+}
+
+StrBlobPtr StrBlobPtr::operator++(int)
+{
+  StrBlobPtr ret(*this);
+  ++*this;
+  return ret;
+}
+
+StrBlobPtr StrBlobPtr::operator--(int)
+{
+  StrBlobPtr ret(*this);
+  --*this;
+  return ret;
+}
+
+string &StrBlobPtr::operator*()
+{
+  auto p = check(curr, "dereference pass end");
+  return (*p)[curr];
+}
+
+string *StrBlobPtr::operator->()
+{
+  return &this->operator*();
+}
+
 string &StrBlobPtr::deref() const
 {
   auto p = check(curr, "deference pass end");
@@ -145,8 +184,30 @@ bool operator<(const StrBlobPtr &s1, const StrBlobPtr &s2)
   return *ret1 < *ret2;
 }
 
+StrBlobPtr operator+(const StrBlobPtr &s1, size_t n)
+{
+  StrBlobPtr ret(s1);
+  while(n)
+    {
+      ++ret;
+      --n;
+    }
+  return ret;
+}
 
-// StrBlobPtr member
+StrBlobPtr operator-(const StrBlobPtr &s1, size_t n)
+{
+  StrBlobPtr ret(s1);
+  while(n)
+    {
+      --ret;
+      --n;
+    }
+  return ret;
+}
+
+
+// ConstStrBlobPtr member
 const string &ConstStrBlobPtr::deref() const
 {
   auto p = check(curr, "dereference pass end");
@@ -158,6 +219,17 @@ ConstStrBlobPtr &ConstStrBlobPtr::incr()
   check(curr, "increment pass end of StrBlobPtr");
   ++curr;
   return *this;
+}
+
+const string &ConstStrBlobPtr::operator*()
+{
+  auto p = check(curr, "deference past end");
+  return (*p)[curr];
+}
+
+const string *ConstStrBlobPtr::operator->()
+{
+  return &this->operator*();
 }
 
 StrBlobPtr StrBlob::begin()

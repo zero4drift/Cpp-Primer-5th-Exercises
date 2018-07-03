@@ -56,9 +56,17 @@ class StrBlobPtr
   friend bool operator==(const StrBlobPtr &, const StrBlobPtr &);
   friend bool operator!=(const StrBlobPtr &, const StrBlobPtr &);
   friend bool operator<(const StrBlobPtr &, const StrBlobPtr &);
+  friend StrBlobPtr operator+(const StrBlobPtr &, size_t n);
+  friend StrBlobPtr operator-(const StrBlobPtr &, size_t n);
  public:
   string &operator[](size_t n);
   const string &operator[](size_t n) const;
+  StrBlobPtr &operator++();
+  StrBlobPtr &operator--();
+  StrBlobPtr operator++(int);
+  StrBlobPtr operator--(int);
+  string &operator*();
+  string *operator->();
  StrBlobPtr(): curr(0) {}
  StrBlobPtr(StrBlob &a, size_t sz = 0):
   wptr(a.data), curr(sz) {}
@@ -79,6 +87,8 @@ class ConstStrBlobPtr
   wptr(a.data), curr(sz) {}
   const string &deref() const;
   ConstStrBlobPtr &incr();
+  const string &operator*();
+  const string *operator->();
  private:
   shared_ptr<vector<string>> check(size_t,const string&) const;
   weak_ptr<vector<string>> wptr;

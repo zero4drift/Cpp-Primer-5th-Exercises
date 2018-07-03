@@ -1,0 +1,2 @@
+// StrBlobPtr behaves like iterator, the most convenient way to get a StrBlobPtr object is to call the begin or end member function of StrBlob object, this way is not only convenient but also safe and clean.
+// the synthesized copy constructor, copy-assignment operator and destructor already satisfy our needs, define spedified copy constructor or copy-assignment operator would introduce uncertanity and complexity.
