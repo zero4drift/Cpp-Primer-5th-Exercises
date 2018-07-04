@@ -50,7 +50,8 @@ int main(int argc, char *argv[])
   istream_iterator<string> eof;
   for(size_t l = 1; l < 10; ++l)
     {
-      cout << "Length " << l <<  count_if(beg, eof, EqLength(l)) << endl;
+      cout << "Length " << l
+	   << " " << count_if(beg, eof, EqLength(l)) << endl;
     }
   cout << "Length not smaller than 10 " << count_if(beg, eof, GeLength(10)) << endl;
 }

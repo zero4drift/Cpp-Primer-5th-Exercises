@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
   istream_iterator<string> eof;
   for(size_t l = 1; l < 11; ++l)
     {
-      cout << "Length " << l <<  count_if(beg, eof, EqLength(l)) << endl;
+      cout << "Length " << l
+	   << " " << count_if(beg, eof, EqLength(l)) << endl;
     }
 }

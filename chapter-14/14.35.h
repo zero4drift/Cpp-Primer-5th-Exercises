@@ -3,6 +3,7 @@
 
 using std::cin;
 using std::istream;
+using std::getline;
 using std::string;
 
 class ReadString
@@ -16,7 +17,7 @@ public:
 string ReadString::operator()() const
 {
   string result;
-  is >> result;
+  getline(is, result);
   if(is)
     return result;
   else

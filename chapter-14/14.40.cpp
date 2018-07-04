@@ -33,10 +33,11 @@ public:
 class PrintString
 {
   ostream &o;
+  char sep;
 public:
-  PrintString(ostream &os = cout): o(os) {}
+  PrintString(ostream &os = cout, char c = ' '): o(os), sep(c) {}
   void operator()(const string &s) const
-  {o << s;}
+  {o << s << sep;}
 };
 
 void elimDups(vector<string> &words)
@@ -53,7 +54,7 @@ void biggies(vector<string> &words, vector<string>::size_type sz)
   auto iter = partition(words.begin(), words.end(), SizeGE(sz));
   auto count = iter - words.begin();
   cout << count << " words" << endl;
-  for_each(words.begin(), iter, PrintString());
+  for_each(words.begin(), iter, PrintString(cout, '\n'));
 }
 
 int main()
