@@ -41,6 +41,8 @@ Sales_data(istream &is): Sales_data()
   Sales_data& combine(const Sales_data&);
   Sales_data &operator+=(const Sales_data &);
   Sales_data &operator=(const string &);
+  operator string() const {return bookNo;}
+  operator double() const {return revenue;}
 private:
   double avg_price() const;
   string bookNo;

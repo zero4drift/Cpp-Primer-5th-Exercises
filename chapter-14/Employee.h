@@ -35,6 +35,8 @@ class Employee
   Employee &operator=(const Employee &);
   Employee &operator=(Employee &&) noexcept;
   Employee &operator=(const string &);
+  explicit operator bool() const
+  {return name.size();}
 };
 
 
