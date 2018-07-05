@@ -2,4 +2,4 @@
 
 // Of course bug exists.
 
-// It does not check the state of the istream object, the finaly Sales_data object modified throuth istream may be unexpected, for the data members of which may not be associated.
+// It does not check the state of the istream object, the final Sales_data object modified throuth istream may be unexpected, for the data members of which may not be associated as one valid Sales_data object.

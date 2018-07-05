@@ -24,6 +24,7 @@ class String
   friend bool operator==(const String &, const String &);
   friend bool operator!=(const String &, const String &);
   friend bool operator<(const String &, const String &);
+  friend ostream& operator<<(ostream &, const String&);
  public:
  String(): elements(nullptr), first_free(nullptr), cap(nullptr) {}
   String(const char *);

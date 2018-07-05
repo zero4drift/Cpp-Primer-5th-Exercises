@@ -60,6 +60,13 @@ Sales_data &Sales_data::operator+=(const Sales_data &data)
   return combine(data);
 }
 
+Sales_data &Sales_data::operator-=(const Sales_data &data)
+{
+  units_sold -= data.units_sold;
+  revenue -= data.revenue;
+  return *this;
+}
+
 Sales_data &Sales_data::operator=(const string &s)
 {
   bookNo = s;
@@ -72,6 +79,13 @@ Sales_data operator+(const Sales_data &data1, const Sales_data &data2)
 {
   Sales_data temp = data1;
   temp += data2;
+  return temp;
+}
+
+Sales_data operator-(const Sales_data &data1, const Sales_data &data2)
+{
+  Sales_data temp = data1;
+  temp -= data2;
   return temp;
 }
 

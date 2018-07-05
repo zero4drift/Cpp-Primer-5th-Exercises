@@ -24,6 +24,7 @@ struct Sales_data {
   friend ostream &operator<<(ostream &, const Sales_data &);
   friend bool operator==(const Sales_data &, const Sales_data &);
   friend bool operator!=(const Sales_data &, const Sales_data &);
+  friend Sales_data operator-(const Sales_data &, const Sales_data &);
 public:
   // Sales_data(): bookNo(""), units_sold(0), revenue(0) {}
   // Exercise 7.14 above has misleading due to the CN version.
@@ -40,6 +41,7 @@ Sales_data(istream &is): Sales_data()
   string isbn() const {return bookNo;}
   Sales_data& combine(const Sales_data&);
   Sales_data &operator+=(const Sales_data &);
+  Sales_data &operator-=(const Sales_data &);
   Sales_data &operator=(const string &);
   operator string() const {return bookNo;}
   operator double() const {return revenue;}

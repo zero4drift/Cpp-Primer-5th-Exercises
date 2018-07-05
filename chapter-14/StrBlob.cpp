@@ -26,14 +26,14 @@ StrBlob &StrBlob::operator=(const StrBlob &s)
   return *this;
 }
 
-string &StrBlob::operator[](size_t n)
+inline string &StrBlob::operator[](size_t n)
 {
-  return (*data)[n];
+  return data->at(n);
 }
 
-const string &StrBlob::operator[](size_t n) const
+inline const string &StrBlob::operator[](size_t n) const
 {
-  return (*data)[n];
+  return data->at(n);
 }
 
 void StrBlob::check(size_type i, const string &msg) const
@@ -159,13 +159,7 @@ StrBlobPtr &StrBlobPtr::incr()
 
 bool operator==(const StrBlobPtr &s1, const StrBlobPtr &s2)
 {
-  auto ret1 = s1.wptr.lock();
-  if(!ret1)
-    throw runtime_error("unbound StrBlobPtr");
-  auto ret2 = s2.wptr.lock();
-  if(!ret2)
-    throw runtime_error("unbound StrBlobPtr");
-  return *ret1 == *ret2;
+  return s1.curr == s2.curr;	// both StrBlobPtr object points to the same StrBlob object.
 }
 
 bool operator!=(const StrBlobPtr &s1, const StrBlobPtr &s2)
@@ -175,13 +169,7 @@ bool operator!=(const StrBlobPtr &s1, const StrBlobPtr &s2)
 
 bool operator<(const StrBlobPtr &s1, const StrBlobPtr &s2)
 {
-  auto ret1 = s1.wptr.lock();
-  if(!ret1)
-    throw runtime_error("unbound StrBlobPtr");
-  auto ret2 = s2.wptr.lock();
-  if(!ret2)
-    throw runtime_error("unbound StrBlobPtr");
-  return *ret1 < *ret2;
+  return s1.curr < s2.curr;
 }
 
 StrBlobPtr operator+(const StrBlobPtr &s1, size_t n)

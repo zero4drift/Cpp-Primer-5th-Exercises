@@ -135,6 +135,8 @@ bool operator==(const String &s1, const String &s2)
   string temp1(s1.begin(), s1.end());
   string temp2(s2.begin(), s2.end());
   return temp1 == temp2;
+  // clever but lower efficiency compared to standard answer
+  // return (s1.size() == s2.size() && equal(s1.begin(), s1.end(), s2.begin()));
 }
 
 bool operator!=(const String &s1, const String &s2)
@@ -147,4 +149,11 @@ bool operator<(const String &s1, const String &s2)
   string temp1(s1.begin(), s1.end());
   string temp2(s2.begin(), s2.end());
   return temp1 < temp2;
+}
+
+ostream &operator<<(ostream &o, const String &s)
+{
+  for(auto p = s.elements; p != s.first_free; ++p)
+    cout << *p;
+  return cout;
 }
