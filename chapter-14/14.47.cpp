@@ -1,5 +1,6 @@
 struct Integral
 {
-  operator const int();		// only non-const Integral object could call this converion operator, and it would be converted to const int. 
+  operator const int();		// meaningless, for onr conversion operator should not define return type, this 'const' here is unspecified, it will be ignored by compiler.
   operator int() const;		// Not only non-const but also const Integral objects could call this one, Integral objects would be converted to int.
 };
+

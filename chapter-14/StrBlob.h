@@ -65,8 +65,8 @@ class StrBlobPtr
   StrBlobPtr &operator--();
   StrBlobPtr operator++(int);
   StrBlobPtr operator--(int);
-  string &operator*();
-  string *operator->();
+  string &operator*() const;
+  string *operator->() const;
  StrBlobPtr(): curr(0) {}
  StrBlobPtr(StrBlob &a, size_t sz = 0):
   wptr(a.data), curr(sz) {}
@@ -90,7 +90,7 @@ class ConstStrBlobPtr
   const string &operator*();
   const string *operator->();
  private:
-  shared_ptr<vector<string>> check(size_t,const string&) const;
+  shared_ptr<vector<string>> check(size_t, const string&) const;
   weak_ptr<vector<string>> wptr;
   size_t curr;
 };

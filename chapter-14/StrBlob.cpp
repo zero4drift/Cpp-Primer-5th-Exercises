@@ -133,13 +133,13 @@ StrBlobPtr StrBlobPtr::operator--(int)
   return ret;
 }
 
-string &StrBlobPtr::operator*()
+string &StrBlobPtr::operator*() const
 {
   auto p = check(curr, "dereference pass end");
   return (*p)[curr];
 }
 
-string *StrBlobPtr::operator->()
+string *StrBlobPtr::operator->() const
 {
   return &this->operator*();
 }
@@ -196,6 +196,17 @@ StrBlobPtr operator-(const StrBlobPtr &s1, size_t n)
 
 
 // ConstStrBlobPtr member
+
+shared_ptr<vector<string>> ConstStrBlobPtr::check(size_t i, const string &msg) const
+{
+  auto ret = wptr.lock();
+  if(!ret)
+    throw runtime_error("unbound StrBlobPtr");
+  if(i >= ret->size())
+    throw out_of_range(msg);
+  return ret;
+}
+
 const string &ConstStrBlobPtr::deref() const
 {
   auto p = check(curr, "dereference pass end");

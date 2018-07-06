@@ -14,7 +14,7 @@ int main()
   vector<string> vs;
   ReadString rs;
   string result;
-  while((result = rs()) != "")
+  while((result = rs()).size())
     vs.push_back(result);
   for(const auto &i : vs)
     cout << i << endl;
