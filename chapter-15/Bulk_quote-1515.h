@@ -3,27 +3,24 @@
 
 
 #include <string>
-#include "Quote.h"
+#include "Disc_quote.h"
 
 using std::string;
 using std::size_t;
 
-class Bulk_quote: public Quote
+class Bulk_quote: public Disc_quote
 {
  public:
   Bulk_quote() = default;
  Bulk_quote(const string & book, double p, size_t qty, double disc):
-  Quote(book, p), min_qty(qty), discount(disc) {}
+  Disc_quote(book, p, qty, disc) {}
   double net_price(size_t) const override;
   ostream &debug() const override;
- private:
-  size_t min_qty = 0;
-  double discount = 0.0;
 };
 
 double Bulk_quote::net_price(size_t cnt) const
 {
-  if(cnt >= min_qty)
+  if(cnt >= quantity)
     return cnt * (1 - discount) * price;
   else
     return cnt * price;
@@ -32,7 +29,7 @@ double Bulk_quote::net_price(size_t cnt) const
 ostream &Bulk_quote::debug() const
 {
   Quote::debug();
-  cout << " min_qty " << min_qty << " discount " << discount;
+  cout << " min_qty " << quantity << " discount " << discount;
   return cout;
 }
 

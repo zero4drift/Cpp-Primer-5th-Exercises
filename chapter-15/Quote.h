@@ -20,6 +20,11 @@ public:
   string isbn() const {return bookNo;}
   virtual double net_price(size_t n) const
   {return n * price;}
+  virtual ostream &debug() const
+  {
+    cout << "bookNo " << bookNo << " price " << price;
+    return cout;
+  }
   virtual ~Quote() = default;
 private:
   string bookNo;
