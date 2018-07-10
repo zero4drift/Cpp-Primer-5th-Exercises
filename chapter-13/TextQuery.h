@@ -29,7 +29,7 @@ class TextQuery
   TextQuery(ifstream &infile);
   TextQuery(const TextQuery &);
   TextQuery &operator=(const TextQuery &);
-  QueryResult query(const string &s);
+  QueryResult query(const string &s) const;
  private:
   friend QueryResult;
   shared_ptr<vector<string>> sp1;
@@ -73,12 +73,12 @@ class QueryResult
   shared_ptr<vector<string>> sp1;
   shared_ptr<map<string, set<TextQuery::line_no>>> sp2;
   public:
-  QueryResult(const string &s, TextQuery &t);
+  QueryResult(const string &s, const TextQuery &t);
   QueryResult(const QueryResult &);
   QueryResult &operator=(const QueryResult &);
 };
 
-QueryResult::QueryResult(const string &s, TextQuery &t):
+QueryResult::QueryResult(const string &s, const TextQuery &t):
 sp1(t.sp1), sp2(t.sp2), search_word(s)
 {
   auto iter = (*sp2).find(search_word);
@@ -107,7 +107,7 @@ ostream &print(ostream &o, const QueryResult &q)
   return o;
 }
 
-QueryResult TextQuery::query(const string &s)
+QueryResult TextQuery::query(const string &s) const
 {
   return QueryResult(s, *this);
 }

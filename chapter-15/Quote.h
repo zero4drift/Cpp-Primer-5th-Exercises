@@ -44,6 +44,8 @@ public:
     cout << "bookNo " << bookNo << " price " << price;
     return cout;
   }
+  virtual Quote* clone() const & {return new Quote(*this);}
+  virtual Quote* clone() && {return new Quote(std::move(*this));}
   virtual ~Quote() {cout << "~Quote()" << endl;};
 private:
   string bookNo;

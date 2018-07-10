@@ -37,6 +37,8 @@ class Bulk_quote: public Quote
   Quote(book, p), min_qty(qty), discount(disc) {}
   double net_price(size_t) const override;
   ostream &debug() const override;
+  Bulk_quote *clone() const & override {return new Bulk_quote(*this);}
+  Bulk_quote *clone() && override {return new Bulk_quote(std::move(*this));}
   ~Bulk_quote() override {cout << "~Bulk_quote()" << endl;}
  private:
   size_t min_qty = 0;
