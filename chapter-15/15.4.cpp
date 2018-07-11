@@ -4,7 +4,7 @@
 // illegal, one class could not derive from itself.
 
 // b. class Derived : private Base { ... }
-// legal.
+// illegal, this one as definition considered legal.
 
 // c. class Derived : public Base;
-// illegal, declaration of a class shoud not include its class derivation list.
+// illegal, declaration of a class should not include its class derivation list.

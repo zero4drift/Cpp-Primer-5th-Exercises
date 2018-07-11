@@ -16,8 +16,8 @@ private:
 class derived: public base
 {
 public:
-  // void print(ostream &os) {print(os); os << " " << i;} // call itself within function body causes infinite loop.
-  void print(ostream &os) {base::print(os); os << " " << i;}
+  // void print(ostream &os) {print(os); os << " " << i;} // call itself within function body causes infinite recursion.
+  void print(ostream &os) override {base::print(os); os << " " << i;}
 private:
   int i;
 };
