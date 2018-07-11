@@ -1,5 +1,5 @@
-#ifndef TEXTQUERY_H
-#define TEXTQUERY_H
+#ifndef TEXTQUERY1542_H
+#define TEXTQUERY1542_H
 
 
 #include <fstream>
@@ -15,6 +15,7 @@
 using std::ifstream;
 using std::istringstream;
 using std::ostream;
+using std::istream;
 using std::cout;
 using std::endl;
 using std::map;
@@ -24,7 +25,6 @@ using std::ispunct;
 using std::set;
 using std::shared_ptr;
 using std::make_shared;
-using std::getline;
 
 class QueryResult;
 
@@ -42,17 +42,35 @@ class TextQuery
   map<string, shared_ptr<set<line_no>>> mp;
 };
 
+istream &get_sentence(istream &is, string &s)
+{
+  s = "";
+  string word;
+  while(is >> word)
+    {
+      char symbol = word[word.size() - 1];
+      if(ispunct(symbol))
+	{
+	  s = s + word;
+	  break;
+	}
+      else
+	s = s + word + " "; 
+    }
+  return is;
+}
+
 TextQuery::TextQuery(ifstream &infile):
 sp1(new vector<string>)
 {  
   line_no line_number = 0;
-  string line;
-  while(getline(infile, line))
+  string sentence;
+  while(get_sentence(infile, sentence))
     {
-      // store line in vector<string>
-      sp1->push_back(line);
-      // scan through the line      
-      istringstream ist(line);
+      // store sentence in vector<string>
+      sp1->push_back(sentence);
+      // scan through the sentence      
+      istringstream ist(sentence);
       string word;
       while(ist >> word)
 	{
@@ -109,7 +127,7 @@ QueryResult &QueryResult::operator=(const QueryResult &q)
     o << "element occurs " << n << " times" << endl;
     auto result = *q.sp2;
     for(const auto &l : result)
-      cout << "\t(line " << l + 1 << ") "
+      cout << "\t(sentence " << l + 1 << ") "
 	   << (*q.sp1)[l] << endl;
     return o;
   }

@@ -1,10 +1,14 @@
+#ifndef QUERY1542_H
+#define QUERY1542_H
+
+
 #include <set>
 #include <string>
 #include <memory>
 #include <iostream>
 #include <algorithm>
 #include <iterator>
-#include "TextQuery.h"
+#include "TextQuery-1542.h"
 
 using std::set;
 using std::shared_ptr;
@@ -150,3 +154,6 @@ NotQuery::eval(const TextQuery &text) const
     }
   return QueryResult(rep(), ret_lines, result.get_file());
 }
+
+
+#endif

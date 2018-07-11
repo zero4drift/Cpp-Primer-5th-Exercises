@@ -7,8 +7,6 @@
 #include "TextQuery.h"
 
 using std::set;
-using std::shared_ptr;
-using std::make_shared;
 using std::cout;
 using std::ostream;
 using std::endl;
@@ -21,7 +19,7 @@ class Query_base
   friend class Query;
 protected:
   using line_no = TextQuery::line_no;
-  Query_base() {cout << "Query_base::Query_base()" << endl;}
+  Query_base() {}
   virtual ~Query_base() = default;
 private:
   virtual QueryResult eval(const TextQuery &) const = 0;
@@ -35,33 +33,56 @@ class Query
   friend Query operator&(const Query &, const Query &);
 public:
   Query(const string &);
+  Query(const Query &p): q(p.q), use(p.use) {++*use;}
+  Query &operator=(const Query &p);
   QueryResult eval(const TextQuery &t) const {return q->eval(t);}
-  string rep() const {cout << "Query::rep" << endl; return q->rep();}
+  string rep() const {return q->rep();}
+  ~Query()
+  {
+    if(--*use == 0)
+      {
+	delete q;
+	delete use;
+      }
+  }
 private:
- Query(shared_ptr<Query_base> query): q(query) {cout << "Query::Query(shared_ptr)" << endl;}
-  shared_ptr<Query_base> q;
+ Query(Query_base *query): q(query), use(new unsigned(1)) {}
+  Query_base *q;
+  unsigned *use;
 };
+
+Query &Query::operator=(const Query &p)
+{
+  ++*p.use;
+  if(--*use == 0)
+    {
+      delete use;
+      delete q;
+    }
+  use = p.use;
+  q = p.q;
+  return *this; 
+}
 
 class WordQuery: public Query_base
 {
   friend class Query;
- WordQuery(const string &s): query_word(s) {cout << "WordQuery::WordQuery(const string &)" << endl;}
+  WordQuery(const string &s): query_word(s) {}
   QueryResult eval(const TextQuery &t) const
   {return t.query(query_word);}
-  string rep() const {cout << "WordQuery::rep" << endl; return query_word;}
+  string rep() const {return query_word;}
   string query_word;
 };
 
-inline Query::Query(const string &s): q(new WordQuery(s)) {cout << "Query::Query(const string &)" << endl;}
+inline Query::Query(const string &s): q(new WordQuery(s)), use(new unsigned(1)) {}
 
 class BinaryQuery: public Query_base
 {
- protected:
- BinaryQuery(const Query &l, const Query &r, string s):
-  lhs(l), rhs(r), opSym(s) {cout << "BinaryQuery::BinaryQuery" << endl;}
+protected:
+  BinaryQuery(const Query &l, const Query &r, string s):
+    lhs(l), rhs(r), opSym(s) {}
   string rep() const
   {
-    cout << "BinaryQuery::rep" << endl;
     return "(" + lhs.rep() + " "
       + opSym + " "
       + rhs.rep() + ")";
@@ -73,14 +94,14 @@ class BinaryQuery: public Query_base
 class AndQuery: public BinaryQuery
 {
   friend Query operator&(const Query &, const Query &);
- AndQuery(const Query &left, const Query &right):
-  BinaryQuery(left, right, "&") {cout << "AndQuery::AndQuery" << endl;}
+  AndQuery(const Query &left, const Query &right):
+    BinaryQuery(left, right, "&") {}
   QueryResult eval(const TextQuery &) const;
 };
 
 inline Query operator&(const Query &lhs, const Query &rhs)
 {
-  return shared_ptr<Query_base>(new AndQuery(lhs, rhs));
+  return new AndQuery(lhs, rhs);
 }
 
 QueryResult
@@ -89,22 +110,22 @@ AndQuery::eval(const TextQuery &text) const
   auto left = lhs.eval(text), right = rhs.eval(text);
   auto ret_lines = make_shared<set<line_no>>();
   set_intersection(left.begin(), left.end(),
-		  right.begin(), right.end(),
-		  inserter(*ret_lines, ret_lines->begin()));
+		   right.begin(), right.end(),
+		   inserter(*ret_lines, ret_lines->begin()));
   return QueryResult(rep(), ret_lines, left.get_file());
 }
 
 class OrQuery: public BinaryQuery
 {
   friend Query operator|(const Query &, const Query &);
- OrQuery(const Query &left, const Query &right):
-  BinaryQuery(left, right, "|") {cout << "OrQUery::OrQuery" << endl;}
+  OrQuery(const Query &left, const Query &right):
+    BinaryQuery(left, right, "|") {}
   QueryResult eval(const TextQuery &) const;
 };
 
 inline Query operator|(const Query &lhs, const Query &rhs)
 {
-  return shared_ptr<Query_base>(new OrQuery(lhs, rhs));
+  return new OrQuery(lhs, rhs);
 }
 
 ostream &operator<<(ostream &os, const Query &query)
@@ -123,7 +144,7 @@ QueryResult OrQuery::eval(const TextQuery &text) const
 class NotQuery: public Query_base
 {
   friend Query operator~(const Query &);
- NotQuery(const Query &q): query(q) {}
+  NotQuery(const Query &q): query(q) {}
   string rep() const {return "~(" + query.rep() + ")";}
   QueryResult eval(const TextQuery &) const;
   Query query;
@@ -131,7 +152,7 @@ class NotQuery: public Query_base
 
 inline Query operator~(const Query &operand)
 {
-  return shared_ptr<Query_base>(new NotQuery(operand));
+  return new NotQuery(operand);
 }
 
 QueryResult
