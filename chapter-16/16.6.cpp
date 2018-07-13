@@ -16,12 +16,12 @@ const T1 *new_begin(const T1 (&array)[N])
 template <typename T1, unsigned N>
 const T1 *new_end(const T1 (&array)[N])
 {
-  return &array[N-1];
+  return new_begin(array) + N;
 }
 
 int main()
 {
   int a[3] = {1, 2, 3};
-  for(auto first = new_begin(a); a != new_end(a); ++first)
+  for(auto first = new_begin(a); first != new_end(a); ++first)
     cout << *first << endl;
 }
