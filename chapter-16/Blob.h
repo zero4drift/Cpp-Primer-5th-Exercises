@@ -22,6 +22,7 @@ template <typename T> class Blob
   typedef typename vector<T>::size_type size_type;
   Blob();
   Blob(initializer_list<T> il);
+  template <typename It> Blob(It it1, It it2);
   size_type size() const {return data->size();}
   bool empty() const {return data->empty();}
   void push_back(const T &t) {data->push_back(t);}
@@ -40,8 +41,13 @@ template <typename T> class Blob
 };
 
 template <typename T> Blob<T>::Blob(): data(make_shared<vector<T>>()) {}
+
 template <typename T> Blob<T>::Blob(initializer_list<T> il):
 data(make_shared<vector<T>>(il)) {}
+
+template <typename T>
+template <typename It>
+Blob<T>::Blob(It it1, It it2): data(make_shared<vector<T>>(it1, it2)) {}
 
 template <typename T> void Blob<T>::check(size_type i, const string &msg) const
 {

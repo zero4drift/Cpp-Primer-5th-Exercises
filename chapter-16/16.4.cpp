@@ -9,8 +9,8 @@ using std::cout;
 using std::endl;
 using std::list;
 
-template <typename T1, typename T2>
-iterator<T2*, T1> new_find(iterator<T2*, T1> it1, iterator<T2*, T1> it2, T2 var)
+template <typename It, typename T2>
+It new_find(It it1, It it2, T2 var)
 {
   while(it1 != it2)
     {
