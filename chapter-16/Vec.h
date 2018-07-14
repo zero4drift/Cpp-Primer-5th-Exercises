@@ -1,5 +1,5 @@
-#ifndef STRVEC_H
-#define STRVEC_H
+#ifndef VEC_H
+#define VEC_H
 
 
 #include <vector>
