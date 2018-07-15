@@ -2,12 +2,11 @@
 #include <vector>
 #include <memory>
 #include <exception>
+#include "My_shared_ptr.h"
 
 using std::string;
 using std::size_t;
 using std::vector;
-using std::shared_ptr;
-using std::make_shared;
 using std::weak_ptr;
 using std::initializer_list;
 using std::runtime_error;
@@ -19,6 +18,7 @@ template <typename T> class Blob
 {
   friend class BlobPtr<T>;
  public:
+  using sh = My_shared_ptr<vector<T>>;
   typedef typename vector<T>::size_type size_type;
   Blob();
   Blob(initializer_list<T> il);
@@ -36,18 +36,18 @@ template <typename T> class Blob
   BlobPtr<T> begin();
   BlobPtr<T> end();
  private:
-  shared_ptr<vector<T>> data;
+  sh data;
   void check(size_type i, const string &msg) const;
 };
 
-template <typename T> Blob<T>::Blob(): data(make_shared<vector<T>>()) {}
+template <typename T> Blob<T>::Blob(): data(sh()) {}
 
 template <typename T> Blob<T>::Blob(initializer_list<T> il):
-data(make_shared<vector<T>>(il)) {}
+data(sh(il)) {}
 
 template <typename T>
 template <typename It>
-Blob<T>::Blob(It it1, It it2): data(make_shared<vector<T>>(it1, it2)) {}
+Blob<T>::Blob(It it1, It it2): data(sh(it1, it2)) {}
 
 template <typename T> void Blob<T>::check(size_type i, const string &msg) const
 {
@@ -104,7 +104,7 @@ template <typename T> class BlobPtr
   BlobPtr &operator++();
   BlobPtr &operator--();
  private:
-  shared_ptr<vector<T>> check(size_t,const string&) const;
+  My_shared_ptr<vector<T>> check(size_t,const string&) const;
   weak_ptr<vector<T>> wptr;
   size_t curr;
 };
@@ -125,7 +125,7 @@ BlobPtr<T> &BlobPtr<T>::operator--()
   return *this;
 }
 
-template <typename T> shared_ptr<vector<T>> BlobPtr<T>::check(size_t i, const string &msg) const
+template <typename T> My_shared_ptr<vector<T>> BlobPtr<T>::check(size_t i, const string &msg) const
 {
   auto ret = wptr.lock();
   if(!ret)

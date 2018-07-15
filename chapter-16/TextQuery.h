@@ -11,6 +11,7 @@
 #include <set>
 #include <memory>
 #include "DebugDelete.h"
+#include "My_shared_ptr.h"
 
 using std::ifstream;
 using std::istringstream;
@@ -22,8 +23,6 @@ using std::set;
 using std::vector;
 using std::string;
 using std::size_t;
-using std::shared_ptr;
-using std::make_shared;
 using std::getline;
 
 class QueryResult;
@@ -31,8 +30,8 @@ class QueryResult;
 class TextQuery
 {
   friend QueryResult;
-  shared_ptr<vector<string>> sp1;
-  shared_ptr<map<string, set<size_t>>> sp2; 
+  My_shared_ptr<vector<string>> sp1;
+  My_shared_ptr<map<string, set<size_t>>> sp2; 
  public:
   TextQuery(ifstream &infile);
   QueryResult query(const string &s);
@@ -62,8 +61,8 @@ class QueryResult
   size_t times = 0;
   string search_word;
   map<size_t, string> result;
-  shared_ptr<vector<string>> sp1;
-  shared_ptr<map<string, set<size_t>>> sp2;
+  My_shared_ptr<vector<string>> sp1;
+  My_shared_ptr<map<string, set<size_t>>> sp2;
  public:
   QueryResult(const string &s, TextQuery &t);
   size_t get_times() const {return times;}
