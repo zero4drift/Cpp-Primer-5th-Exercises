@@ -44,6 +44,7 @@ template <typename T> class Vec
   const T &operator[](size_t n) const;
   ~Vec();
   void push_back(const T &);
+  template <typename... Args> void emplace_back(Args&&...);
   size_t size() const {return first_free - elements;}
   size_t capacity() const {return cap - elements;}
   void reserve(size_t);
@@ -68,6 +69,15 @@ template <typename T> void Vec<T>::push_back(const T &s)
 {
   chk_n_alloc();
   alloc.construct(first_free++, s);
+}
+
+template <typename T>
+template <typename... Args>
+inline
+void Vec<T>::emplace_back(Args&&... args)
+{
+  chk_n_alloc();
+  alloc.construct(first_free++, std::forward<Args>(args)...);
 }
 
 template <typename T> pair<T *, T *>
