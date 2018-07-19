@@ -8,5 +8,6 @@ public:
   List<elemType>& operator=(const List<elemType> &);
   ~List();
   void insert(ListItem<elemType> *ptr, elemType value);
+private:
   ListItem<elemType> *front, *end;
 };

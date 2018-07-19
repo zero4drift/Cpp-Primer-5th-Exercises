@@ -4,7 +4,7 @@ using std::cout;
 using std::endl;
 
 template <typename T, unsigned N>
-constexpr unsigned number(T (&array)[N])
+constexpr unsigned number(const T (&array)[N])
 {
   return N;
 }

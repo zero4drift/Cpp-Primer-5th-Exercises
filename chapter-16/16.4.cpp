@@ -10,7 +10,7 @@ using std::endl;
 using std::list;
 
 template <typename It, typename T2>
-It new_find(It it1, It it2, T2 var)
+It new_find(It it1, It it2, const T2 &var)
 {
   while(it1 != it2)
     {

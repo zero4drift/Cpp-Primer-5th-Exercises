@@ -87,12 +87,27 @@ template <typename T> T &Blob<T>::operator[](size_type i)
 
 template <typename T> bool operator==(const BlobPtr<T> &a, const BlobPtr<T> &b)
 {
-  return a.wptr == b.wptr;
+  if(a.wptr.lock() == b.wptr.lock())
+    {
+      throw runtime_error("ptrs to different Blobs!");
+    }
+  return a.curr == b.curr;
+}
+
+template <typename T> bool operator< (const BlobPtr<T> &a, const BlobPtr<T> &b)
+{
+  if(a.wptr.lock() != rhs.wptr.lock())
+    {
+      throw runtime_error("ptrs to different Blobs!");
+    }
+  return a.curr < b.curr;
 }
 
 template <typename T> class BlobPtr
 {
   friend bool operator==<T>(const BlobPtr<T> &, const BlobPtr<T> &);
+  friend bool operator< <T>
+    (const BlobPtr<T> &, const BlobPtr<T> &);
  public:
  BlobPtr(): curr(0) {}
  BlobPtr(Blob<T> &a, size_t sz = 0): wptr(a.data), curr(sz) {}
