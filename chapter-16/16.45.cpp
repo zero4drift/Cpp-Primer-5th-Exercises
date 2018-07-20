@@ -12,4 +12,4 @@ template <typename T> void g(T&& val) {vector<T> v;}
 // call g with a variable of type int;
 // T: int&
 // val: int
-// initialize a empty vector with element type as int& within instantiated function body.
+// vector<int&> is not legal.

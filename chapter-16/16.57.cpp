@@ -1,5 +1,5 @@
 // errorMsg version defined in section 16.4.2
-// advantage: arbitrary type(supports '<<' operator) and arbitrary amount of passed in arguments.
+// advantage: arbitrary type(supports '<<' operator), better flexibility;
 // disadvantage: more complicated code;
 
 // errorMsg version defined in section 6.2.6

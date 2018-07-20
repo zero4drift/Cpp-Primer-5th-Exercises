@@ -13,4 +13,4 @@ double d; float f; char c;
 // legal, T: char
 
 // d. fcn(d, f);
-// illegal, function template fcn's parameter list accepts two paramters with same type which is template type parameter, now for first time template type parameter deduced from function argument is double, second time float, not match.a
+// illegal, function template fcn's parameter list accepts two paramters with same type which is template type parameter, now for first time template type parameter deduced from function argument is double, second time float, not match.

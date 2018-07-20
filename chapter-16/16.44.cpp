@@ -6,7 +6,8 @@
 // T: int
 
 // b. g(ci);
-// T: const int
+// T: const int;
+// some one said here should be int and const is ignored.
 
 // c. g(i * ci);
 // T: int

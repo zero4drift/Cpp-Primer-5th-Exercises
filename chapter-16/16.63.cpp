@@ -8,15 +8,16 @@ using std::string;
 using std::cout;
 using std::endl;
 using std::count;
+using std::size_t;
 
 template <typename T>
-size_t count_in_vector(const vector<T> &vt, const T i)
+size_t count_in_vector(const vector<T> &vt, T i)
 {
   return count(vt.begin(), vt.end(), i);
 }
 
 template <>
-size_t count_in_vector(const vector<const char *> &vt, const char *const i)
+size_t count_in_vector(const vector<const char *> &vt, const char *i)
 {
   size_t n;
   for(auto iter = vt.begin(); iter != vt.end(); ++iter)

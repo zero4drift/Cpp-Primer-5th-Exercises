@@ -10,3 +10,4 @@ template <class T> int compare(const T &, const T &);
 // legal;
 // same theory as mentioned in a:
 // now T deduced from first function argument and second matches;
+// T: char[3]
