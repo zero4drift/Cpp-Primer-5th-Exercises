@@ -1,5 +1,6 @@
 // As the operator+= and operator+ member functions defined within class Sales_data;
-// if the third argument of accumulate function is Sales_data(), the return result as a Sales_data object whose bookNo is an empty string.
+// if the third argument of accumulate function is Sales_data(), the return result as a Sales_data object whose bookNo is an empty string;
+// suppose that the user of class should keep the arguments legal and class itself would not check the passed in arguments.
 
 #include <tuple>
 #include <iostream>

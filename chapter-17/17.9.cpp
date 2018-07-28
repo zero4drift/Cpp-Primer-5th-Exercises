@@ -11,9 +11,9 @@ int main()
   // 58*0...100000
   bitset<32> bv(1010101);
   std::cout << bv << std::endl;
-  // 57*0...1010101
+  // 25*0...1010101
   // guess expression in textbook misses '0b';
-  // but if textbook is right:
+  // but if not so:
   // 12*0...11110110100110110101 
   std::string bstr;
   std::cin >> bstr;

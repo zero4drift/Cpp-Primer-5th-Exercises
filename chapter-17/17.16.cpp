@@ -15,10 +15,11 @@ using std::endl;
 
 int main()
 {
-  regex r("[^c]ei");
+  regex r("[^c]ei", regex::icase);
   smatch results;
   string test;
   while(cin >> test)
+    // if using regex_match, only three-character word would match
     (regex_search(test, results, r))
       ? cout << results.str() << " illegal" << endl
       : cout << test << " legal" << endl;
