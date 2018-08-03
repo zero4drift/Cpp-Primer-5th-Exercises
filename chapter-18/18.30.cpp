@@ -1,3 +1,6 @@
+class Class
+{};
+
 class Base
 {
   int i = 0;
@@ -29,4 +32,12 @@ public:
   MI(): Base(), D1(), D2() {}
   MI(int j): Base(j), D1(j), D2(j) {}
   MI(const MI &m): Base(m), D1(m), D2(m) {}
+};
+
+class Final: public MI, public Class
+{
+public:
+  Final(): Base(), MI(), Class() {}
+  Final(int j): Base(j), MI(j) {}
+  Final(const Final &f): Base(f), MI(f) {}
 };
