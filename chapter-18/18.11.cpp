@@ -1,2 +1,1 @@
-// Virtual function what of class type exception provides information related to throwed exception;
-// this function should help us handle the exception but not introduces a new exception, that should be guaranteed when programmer calls this function.
+// During handle process of exception, there should not have another exception again, or std library function terminate is called to terminate the program processing.

@@ -18,9 +18,13 @@
 
 // (d) delete pb2;
 // MI::~MI():
+// D2::~D2();
+// Base2::~Base2();
+// D1::~D1();
+// Base1::~Base1();
 
 // (e) delete pd1;
-// MI::~MI():
+// same as the former one;
 
 // (f) delete pd2;
-// MI::~MI();
+// same as the former one;

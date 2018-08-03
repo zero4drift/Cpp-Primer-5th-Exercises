@@ -26,6 +26,8 @@ void f()
 // workable functions:
 // 2, literal constant 0 converted to const void *
 // 3, match
+// 4, int converted to double
+// 5, literal constant 0 conveted to char *;
 
 // second question:
 // hide the function declarations with same name in outer scope;

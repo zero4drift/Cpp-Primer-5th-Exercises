@@ -14,6 +14,8 @@
 // Class();
 // Final();
 
+// and Destructors run order reversed from the formerf one.
+
 // (b)
 // one Base sub object, two Class sub objects;
 
@@ -23,7 +25,7 @@
 // Mi *pmi;
 // D2 *pd2;
 // 1. pb = new Class;
-// illegal, Base class pointer could not be converted to its derived class pointer;
+// illegal, Base class pointer could not be implicitly converted to its derived class pointer;
 // 2. pc = new Final;
 // illegal, ambiguous, which Calss sub object?
 // 3. pmi = pb;

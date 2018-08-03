@@ -1,3 +1,6 @@
+// This exercise is very ambiguous and misleading;
+// another solution see https://github.com/Mooophy/Cpp-Primer/blob/master/ch18/ex18.1.2.3.cpp
+
 // 1. associated try-catch expression inside function where exception occurs;
 // 2. associated try-catch expression placed in caller function.
 #include <vector>
