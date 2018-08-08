@@ -79,6 +79,7 @@ Token &Token::operator=(const Token &t)
 
   Token &Token::operator=(Token &&t)
   {
+    if(this == &t) return *this;
     if(tok == STR && t.tok != STR) sval.~string();
     if(tok == SAL && t.tok != SAL) sal.~Sales_data();
     if(tok == STR && t.tok == STR)
@@ -87,7 +88,7 @@ Token &Token::operator=(const Token &t)
       sal = std::move(t.sal);
     else
       moveUnion(std::move(t));
-    tok = t.tok;
+    tok = std::move(t.tok);
     return *this;
   }
 
