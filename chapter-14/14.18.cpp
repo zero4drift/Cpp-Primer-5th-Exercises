@@ -1,1 +1,1 @@
-// See StrBlob.h, StrBlobPtr.h, StrVec.h and String.h.
+// See StrBlob.h, StrVec.h and String.h.

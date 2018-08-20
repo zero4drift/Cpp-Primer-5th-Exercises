@@ -1,1 +1,1 @@
-// Seee StrBlobPtr.h and StrBlobPtr.cpp.
+// Seee StrBlob.h and StrBlob.cpp.
