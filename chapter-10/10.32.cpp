@@ -5,7 +5,7 @@
 #include <iterator>
 #include <iostream>
 #include <numeric>
-#include "Sales_item.h"
+#include "Sales_item.hpp"
 
 using std::vector;
 using std::copy;

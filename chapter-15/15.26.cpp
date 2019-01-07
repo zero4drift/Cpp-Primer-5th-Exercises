@@ -1,7 +1,7 @@
 // See Quote.h and Bulk_quote.h.
 
-#include "Quote.h"
-#include "Bulk_quote.h"
+#include "Quote.hpp"
+#include "Bulk_quote.hpp"
 
 int main()
 {

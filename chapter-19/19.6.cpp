@@ -1,7 +1,7 @@
 // Exercise should indicate that there is need to modify the header file contains class Query_base and AndQuery.
 
 #include <iostream>
-#include "Query.h"
+#include "Query.hpp"
 
 using std::cout;
 using std::endl;

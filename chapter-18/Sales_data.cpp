@@ -1,5 +1,5 @@
-#include "Sales_data.h"
-#include "Sales_data_exception.h"
+#include "Sales_data.hpp"
+#include "Sales_data_exception.hpp"
 
 Sales_data& Sales_data::combine(const Sales_data &rhs)
 {

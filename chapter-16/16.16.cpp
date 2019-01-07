@@ -1,7 +1,7 @@
 // See StrVec.h.
 
 #include <iostream>
-#include "Vec.h"
+#include "Vec.hpp"
 
 using std::cout;
 using std::endl;

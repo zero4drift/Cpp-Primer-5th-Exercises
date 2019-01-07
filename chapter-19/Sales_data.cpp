@@ -1,4 +1,4 @@
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 Sales_data& Sales_data::combine(const Sales_data &rhs)
 {

@@ -2,8 +2,8 @@
 
 #include <fstream>
 #include <iostream>
-#include "15.35.h"
-#include "TextQuery.h"
+#include "15.35.hpp"
+#include "TextQuery.hpp"
 
 using std::ifstream;
 using std::cout;

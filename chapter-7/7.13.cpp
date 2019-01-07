@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 using std::cin;
 using std::cout;

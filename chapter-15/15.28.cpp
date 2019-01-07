@@ -1,8 +1,8 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "Quote.h"
-#include "Bulk_quote.h"
+#include "Quote.hpp"
+#include "Bulk_quote.hpp"
 
 using std::vector;
 using std::shared_ptr;

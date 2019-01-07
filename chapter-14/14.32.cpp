@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StrBlob.h"
+#include "StrBlob.hpp"
 
 class StrBlobPtr_Ptr
 {

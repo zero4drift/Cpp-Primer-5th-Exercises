@@ -1,4 +1,4 @@
-#include "Person.h"
+#include "Person.hpp"
 
 istream &read(istream &is, Person &p)
 {

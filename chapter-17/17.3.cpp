@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "TextQuery.h"
+#include "TextQuery.hpp"
 
 using std::ifstream;
 using std::cin;

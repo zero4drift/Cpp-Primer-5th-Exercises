@@ -1,7 +1,7 @@
 // See Sales_data.h and Sales_data.cpp.
 
 #include <iostream>
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 using std::cout;
 

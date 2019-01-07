@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include "Screen.h"
+#include "Screen.hpp"
 
 using std::string;
 using std::cout;

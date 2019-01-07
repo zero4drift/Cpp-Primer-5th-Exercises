@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "StrBlob.h"
+#include "StrBlob.hpp"
 
 using std::string;
 using std::cout;

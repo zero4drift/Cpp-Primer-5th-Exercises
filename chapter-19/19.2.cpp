@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <iostream>
-#include "StrVec.h"
+#include "StrVec.hpp"
 
 using std::malloc;
 using std::free;

@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <numeric>
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 using std::tuple;
 using std::get;

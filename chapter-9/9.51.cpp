@@ -66,7 +66,7 @@ unsigned month_transform(const string &s)
 {
   if(s == "January" || s == "Jan") return 1;
   else if(s == "February" || s == "Feb") return 2;
-  else if(s == "March" || s == "Mar") return 3;
+  else if(s == "Mar.hpp" || s == "Mar") return 3;
   else if(s == "April" || s == "Apr") return 4;
   else if(s == "May" || s == "May") return 5;
   else if(s == "June" || s == "Jun") return 6;

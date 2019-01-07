@@ -2,8 +2,8 @@
 
 #include <fstream>
 #include <iostream>
-#include "chapter10.h"
-#include "chapter15.h"
+#include "chapter10.hpp"
+#include "chapter15.hpp"
 
 using std::ifstream;
 using std::cout;

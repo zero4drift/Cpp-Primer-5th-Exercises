@@ -3,7 +3,7 @@
 
 
 #include <string>
-#include "Quote.h"
+#include "Quote.hpp"
 
 using std::string;
 using std::size_t;

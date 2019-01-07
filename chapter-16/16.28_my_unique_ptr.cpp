@@ -1,6 +1,6 @@
 #include <iostream>
-#include "My_unique_ptr.h"
-#include "DebugDelete.h"
+#include "My_unique_ptr.hpp"
+#include "DebugDelete.hpp"
 
 using std::cout;
 using std::endl;

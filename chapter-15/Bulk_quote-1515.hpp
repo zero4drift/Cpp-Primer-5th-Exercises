@@ -3,7 +3,7 @@
 
 
 #include <string>
-#include "Disc_quote.h"
+#include "Disc_quote.hpp"
 
 using std::string;
 using std::size_t;

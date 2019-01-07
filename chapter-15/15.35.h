@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
-#include "TextQuery.h"
+#include "TextQuery.hpp"
 
 using std::set;
 using std::shared_ptr;

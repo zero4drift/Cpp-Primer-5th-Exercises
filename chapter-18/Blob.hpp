@@ -2,7 +2,10 @@
 #include <vector>
 #include <memory>
 #include <exception>
-#include "My_shared_ptr.h"
+#include <typeinfo>
+#include <cstdlib>
+#include <iostream>
+#include "My_shared_ptr.hpp"
 
 using std::string;
 using std::size_t;
@@ -10,6 +13,10 @@ using std::vector;
 using std::weak_ptr;
 using std::initializer_list;
 using std::runtime_error;
+using std::bad_alloc;
+using std::abort;
+using std::cerr;
+using std::endl;
 using std::out_of_range;
 
 template <typename T> class BlobPtr;
@@ -40,10 +47,13 @@ template <typename T> class Blob
   void check(size_type i, const string &msg) const;
 };
 
-template <typename T> Blob<T>::Blob(): data(sh()) {}
+template <typename T> Blob<T>::Blob()
+try: data(sh()) {}
+catch(const bad_alloc &e) {cerr << e.what() << endl; abort();}
 
-template <typename T> Blob<T>::Blob(initializer_list<T> il):
-data(sh(il)) {}
+template <typename T> Blob<T>::Blob(initializer_list<T> il)
+try: data(sh(il)) {}
+catch(const bad_alloc &e) {cerr << e.what() << endl; abort();}
 
 template <typename T>
 template <typename It>
@@ -96,7 +106,7 @@ template <typename T> bool operator==(const BlobPtr<T> &a, const BlobPtr<T> &b)
 
 template <typename T> bool operator< (const BlobPtr<T> &a, const BlobPtr<T> &b)
 {
-  if(a.wptr.lock() != rhs.wptr.lock())
+  if(a.wptr.lock() != b.wptr.lock())
     {
       throw runtime_error("ptrs to different Blobs!");
     }

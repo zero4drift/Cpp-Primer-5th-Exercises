@@ -1,4 +1,4 @@
-#include "HasPtr.h"
+#include "HasPtr.hpp"
 
 int main()
 {

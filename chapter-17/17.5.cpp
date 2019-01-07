@@ -2,7 +2,7 @@
 #include <utility>
 #include <string>
 #include <algorithm>
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 using std::vector;
 using std::pair;

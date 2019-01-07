@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Blob.h"
+#include "Blob.hpp"
 
 using std::cout;
 using std::endl;

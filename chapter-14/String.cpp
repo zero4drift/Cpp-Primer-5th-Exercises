@@ -4,7 +4,7 @@
 #include <exception>
 #include <cstring>
 #include <iostream>
-#include "String.h"
+#include "String.hpp"
 
 using std::string;
 using std::size_t;

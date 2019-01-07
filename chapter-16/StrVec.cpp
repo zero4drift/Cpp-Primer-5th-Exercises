@@ -5,7 +5,7 @@
 #include <exception>
 #include <initializer_list>
 #include <algorithm>
-#include "StrVec.h"
+#include "StrVec.hpp"
 
 using std::vector;
 using std::string;

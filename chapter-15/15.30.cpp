@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "Quote.h"
-#include "Bulk_quote.h"
+#include "Quote.hpp"
+#include "Bulk_quote.hpp"
 
 using std::multiset;
 using std::ostream;

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Chapter6.h"
+#include "Chapter6.hpp"
 
 using std::cout;
 using std::cin;

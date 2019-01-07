@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <iostream>
-#include "Query.h"
+#include "Query.hpp"
 
 using std::bad_cast;
 using std::cout;

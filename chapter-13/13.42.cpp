@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "TextQuery-1342.h"
+#include "TextQuery-1342.hpp"
 
 using std::ifstream;
 using std::cin;

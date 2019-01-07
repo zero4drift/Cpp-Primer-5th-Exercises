@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Sales_data.h"
-#include "Sales_data_exception.h"
+#include "Sales_data.hpp"
+#include "Sales_data_exception.hpp"
 
 using std::cerr;
 using std::endl;

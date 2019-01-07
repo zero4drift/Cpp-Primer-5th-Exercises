@@ -3,7 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 using std::mem_fn;
 using std::vector;

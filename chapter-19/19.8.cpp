@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Query.h"
+#include "Query.hpp"
 
 using std::cout;
 using std::endl;

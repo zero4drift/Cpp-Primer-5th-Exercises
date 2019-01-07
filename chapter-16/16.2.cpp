@@ -1,4 +1,4 @@
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 template <typename T>
 int compare(const T &v1, const T &v2)

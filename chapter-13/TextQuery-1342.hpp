@@ -2,12 +2,10 @@
 #include <sstream>
 #include <iostream>
 #include <map>
-#include <vector>
 #include <string>
 #include <set>
 #include <memory>
-#include <initializer_list>
-#include "StrBlob.h"
+#include "StrVec.hpp"
 
 using std::ifstream;
 using std::istringstream;
@@ -15,36 +13,37 @@ using std::ostream;
 using std::cout;
 using std::endl;
 using std::map;
-using std::vector;
 using std::string;
 using std::set;
 using std::shared_ptr;
+using std::make_shared;
 using std::getline;
-using std::initializer_list;
 
 class QueryResult;
 
 class TextQuery
 {
  public:
-  using line_no = vector<string>::size_type;
+  using line_no = size_t;
   TextQuery(ifstream &infile);
+  TextQuery(const TextQuery &);
+  TextQuery &operator=(const TextQuery &);
   QueryResult query(const string &s);
  private:
   friend QueryResult;
-  StrBlob sb;
+  shared_ptr<StrVec> sp1;
   shared_ptr<map<string, set<line_no>>> sp2;
 };
 
 TextQuery::TextQuery(ifstream &infile):
-sp2(new map<string, set<line_no>>)
+sp1(new StrVec), sp2(new map<string, set<line_no>>)
 {  
   line_no line_number = 0;
   string line;
   while(getline(infile, line))
     {
-      // store line in vector<string>
-      sb.push_back(line);
+      // store line in StrVec
+      sp1->push_back(line);
       // scan through the line      
       istringstream ist(line);
       string word;
@@ -55,25 +54,45 @@ sp2(new map<string, set<line_no>>)
     }
 }
 
+TextQuery::TextQuery(const TextQuery &t): sp1(make_shared<StrVec>(*t.sp1)), sp2(make_shared<map<string, set<line_no>>>(*t.sp2)) {}
+
+TextQuery &TextQuery::operator=(const TextQuery &t)
+{
+  sp1 = make_shared<StrVec>(*t.sp1);
+  sp2 = make_shared<map<string, set<line_no>>>(*t.sp2);
+  return *this;
+}
+
 class QueryResult
 {
   friend ostream &print(ostream &, const QueryResult &);
   string search_word;
-  StrBlob qsb;
   set<TextQuery::line_no> nodata;
   set<TextQuery::line_no> *result = &nodata;
+  shared_ptr<StrVec> sp1;
   shared_ptr<map<string, set<TextQuery::line_no>>> sp2;
- public:
+  public:
   QueryResult(const string &s, TextQuery &t);
+  QueryResult(const QueryResult &);
+  QueryResult &operator=(const QueryResult &);
 };
 
 QueryResult::QueryResult(const string &s, TextQuery &t):
-qsb(t.sb), sp2(t.sp2), search_word(s)
+sp1(t.sp1), sp2(t.sp2), search_word(s)
 {
   auto iter = (*sp2).find(search_word);
   auto last = (*sp2).end();
   if(iter != last)
     result = &(iter->second);
+}
+
+QueryResult::QueryResult(const QueryResult &q): sp1(make_shared<StrVec>(*q.sp1)), sp2(make_shared<map<string, set<TextQuery::line_no>>>(*q.sp2)) {}
+
+QueryResult &QueryResult::operator=(const QueryResult &q)
+{
+  sp1 = make_shared<StrVec>(*q.sp1);
+  sp2 = make_shared<map<string, set<TextQuery::line_no>>>(*q.sp2);
+  return *this;
 }
 
 ostream &print(ostream &o, const QueryResult &q)
@@ -82,11 +101,8 @@ ostream &print(ostream &o, const QueryResult &q)
   o << "element occurs " << n << " times" << endl;
   auto result = q.result;
   for(const auto &l : *result)
-    {
-      ConstStrBlobPtr csbp(q.qsb, l);
-      cout << "\t(line " << l + 1 << ") "
-	   << csbp.deref() << endl;
-    }
+    cout << "\t(line " << l + 1 << ") "
+	 << (*q.sp1)[l] << endl;
   return o;
 }
 

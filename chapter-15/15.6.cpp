@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Quote.h"
-#include "Bulk_quote.h"
-#include "Limit_Bulk_quote.h"
+#include "Quote.hpp"
+#include "Bulk_quote.hpp"
+#include "Limit_Bulk_quote.hpp"
 
 int main()
 {

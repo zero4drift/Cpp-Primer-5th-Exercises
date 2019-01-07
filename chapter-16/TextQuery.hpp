@@ -10,8 +10,8 @@
 #include <string>
 #include <set>
 #include <memory>
-#include "DebugDelete.h"
-#include "My_shared_ptr.h"
+#include "DebugDelete.hpp"
+#include "My_shared_ptr.hpp"
 
 using std::ifstream;
 using std::istringstream;

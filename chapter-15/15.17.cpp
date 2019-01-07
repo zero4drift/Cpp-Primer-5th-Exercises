@@ -1,4 +1,4 @@
-#include "Disc_quote.h"
+#include "Disc_quote.hpp"
 
 int main()
 {

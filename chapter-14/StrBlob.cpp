@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 #include <exception>
-#include "StrBlob.h"
+#include "StrBlob.hpp"
 
 using std::size_t;
 using std::vector;

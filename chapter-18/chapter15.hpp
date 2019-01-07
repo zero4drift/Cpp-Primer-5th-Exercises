@@ -8,7 +8,7 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
-#include "chapter10.h"
+#include "chapter10.hpp"
 
 using std::set;
 using std::cout;

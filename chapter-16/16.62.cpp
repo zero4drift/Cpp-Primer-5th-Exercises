@@ -1,6 +1,6 @@
 #include <unordered_set>
 #include <iostream>
-#include "Sales_data.h"
+#include "Sales_data.hpp"
 
 using std::unordered_multiset;
 using std::cout;
